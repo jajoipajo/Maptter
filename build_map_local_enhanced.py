@@ -25,6 +25,28 @@ ARTISTS = [
     {"slug": "matter", "name": "Matter", "color": "#c0392b"},
     {"slug": "tunja", "name": "Tunja", "color": "#1f77b4"},
 ]
+ALBUM_RELEASE_YEAR = {
+    ("matter", "Troglav I"): 2015,
+    ("matter", "Troglav II"): 2016,
+    ("matter", "Troglav III"): 2017,
+    ("matter", "Amphibios"): 2017,
+    ("matter", "Mrk"): 2018,
+    ("matter", "Haos"): 2019,
+    ("matter", "Predjed"): 2020,
+    ("tunja", "Kolajna"): 2023,
+}
+ALBUM_PALETTE = [
+    "#5E81AC",
+    "#BF616A",
+    "#A3BE8C",
+    "#D08770",
+    "#B48EAD",
+    "#88C0D0",
+    "#EBCB8B",
+    "#81A1C1",
+    "#8FBCBB",
+    "#C0C6CF",
+]
 
 TOKEN_RE = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿČčŠšŽžĆćĐđ]{2,}")
 LOCATION_PREPOSITIONS = {
@@ -525,22 +547,49 @@ def popup_html(title: str, subtitle: str, artist: str, color: str, lines: list[s
     )
 
 
-def split_div_icon(color_left: str, color_right: str, size: int, ring: bool = False) -> folium.DivIcon:
+def album_label_for_row(row: dict) -> str:
+    artist_name = next((a["name"] for a in ARTISTS if a["slug"] == row.get("artist")), row.get("artist", ""))
+    return f"{artist_name} - {row.get('album', 'Unknown') or 'Unknown'}"
+
+
+def album_sort_key(label: str) -> tuple[int, str, str]:
+    parts = label.split(" - ", 1)
+    artist = (parts[0] or "").strip().lower() if parts else ""
+    album = (parts[1] or "").strip() if len(parts) > 1 else ""
+    if album.lower() == "unknown":
+        return (9999, artist, album)
+    y = ALBUM_RELEASE_YEAR.get((artist, album))
+    return (y if y is not None else 9000, artist, album)
+
+
+def multi_div_icon(colors: list[str], size: int, ring: bool = False) -> folium.DivIcon:
+    if not colors:
+        colors = ["#888888"]
+    n = len(colors)
+    stops = []
+    for i, c in enumerate(colors):
+        a = 100.0 * i / n
+        b = 100.0 * (i + 1) / n
+        stops.append(f"{c} {a:.3f}% {b:.3f}%")
     outer = (
         f"width:{size}px;height:{size}px;border-radius:50%;"
-        f"background:conic-gradient({color_left} 0 50%, {color_right} 50% 100%);"
+        f"background:conic-gradient({', '.join(stops)});"
         "border:2px solid rgba(255,255,255,0.9);position:relative;"
     )
     if ring:
         inner = max(10, size - 8)
         hole = (
             f"<div style='position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);"
-            f"width:{inner}px;height:{inner}px;border-radius:50%;background:rgba(20,20,20,0.9);'></div>"
+            f"width:{inner}px;height:{inner}px;border-radius:50%;background:rgba(20,20,20,0.92);'></div>"
         )
     else:
         hole = ""
     html = f"<div style=\"{outer}\">{hole}</div>"
     return folium.DivIcon(html=html, icon_size=(size, size), icon_anchor=(size // 2, size // 2))
+
+
+def split_div_icon(color_left: str, color_right: str, size: int, ring: bool = False) -> folium.DivIcon:
+    return multi_div_icon([color_left, color_right], size=size, ring=ring)
 
 
 def main() -> None:
@@ -721,6 +770,9 @@ def main() -> None:
 
     # Build map.
     m = folium.Map(location=[46.15, 14.99], zoom_start=4, tiles="CartoDB dark_matter")
+    artist_fg = folium.FeatureGroup(name="Artist pogled", show=True)
+    album_fg = folium.FeatureGroup(name="Album pogled", show=False)
+
     merged_toponyms = dict(toponyms)
     merged_toponyms.update(dynamic_toponyms)
     by_topo = defaultdict(list)
@@ -730,62 +782,63 @@ def main() -> None:
     matter_cfg = next(x for x in ARTISTS if x["slug"] == "matter")
     tunja_cfg = next(x for x in ARTISTS if x["slug"] == "tunja")
 
+    all_album_labels = sorted({album_label_for_row(r) for r in all_rows}, key=album_sort_key)
+    album_color_map = {lab: ALBUM_PALETTE[i % len(ALBUM_PALETTE)] for i, lab in enumerate(all_album_labels)}
+
     for topo_key, rows in sorted(by_topo.items()):
         topo = merged_toponyms[topo_key]
         artists_here = sorted({r["artist"] for r in rows})
         is_shared = len(artists_here) > 1
-        total = sum(r["stevilo_pojavljanj"] for r in rows)
+        total = sum(int(r.get("stevilo_pojavljanj", 0)) for r in rows)
+        album_labels_here = sorted({album_label_for_row(r) for r in rows}, key=album_sort_key)
+
+        album_totals = defaultdict(int)
+        for r in rows:
+            album_totals[album_label_for_row(r)] += int(r.get("stevilo_pojavljanj", 0))
+        dominant_album = max(album_totals.items(), key=lambda x: x[1])[0] if album_totals else (album_labels_here[0] if album_labels_here else "Unknown")
+        color_album = album_color_map.get(dominant_album, "#bbbbbb")
+        album_colors_here = [album_color_map.get(a, "#bbbbbb") for a in album_labels_here]
+
         location_type = (
-            "država" if topo.kind == "country" else ("celina" if topo.kind == "continent" else ("reka" if topo.kind == "river" else "mesto/kraj"))
+            "dr?ava" if topo.kind == "country" else ("celina" if topo.kind == "continent" else ("reka" if topo.kind == "river" else "mesto/kraj"))
         )
+
         line_items = []
-        for r in sorted(rows, key=lambda x: (x["artist"], -x["stevilo_pojavljanj"], x["skladba"])):
+        for r in sorted(rows, key=lambda x: (x["artist"], -int(x.get("stevilo_pojavljanj", 0)), x["skladba"])):
             artist_name = next(a["name"] for a in ARTISTS if a["slug"] == r["artist"])
             line_items.append(
                 f"<b>{escape(artist_name)}</b> - {escape(r['skladba'])} ({escape(r['album'])}) - "
-                f"<b>število pojavljanj: {r['stevilo_pojavljanj']}</b> - "
+                f"<b>?tevilo pojavljanj: {int(r.get('stevilo_pojavljanj', 0))}</b> - "
                 f"<a href='{escape(r['besedilo_url'])}' target='_blank'>besedilo</a> | "
                 f"<a href='{escape(r['yt_url'])}' target='_blank'>yt</a>"
             )
+
         artist_label = ", ".join(next(a["name"] for a in ARTISTS if a["slug"] == s) for s in artists_here)
         if is_shared:
-            pop_color = "#9b59b6"
+            pop_color_artist = "#9b59b6"
+            color_artist = "#9b59b6"
         else:
-            pop_color = matter_cfg["color"] if artists_here[0] == "matter" else tunja_cfg["color"]
-        details_html = popup_html(
+            single = artists_here[0]
+            color_artist = matter_cfg["color"] if single == "matter" else tunja_cfg["color"]
+            pop_color_artist = color_artist
+
+        details_html_artist = popup_html(
             title=topo.display,
             subtitle=f"{location_type} | skupno pojavljanj: {total}",
             artist=artist_label,
-            color=pop_color,
+            color=pop_color_artist,
+            lines=line_items,
+        )
+        details_html_album = popup_html(
+            title=topo.display,
+            subtitle=f"{location_type} | skupno pojavljanj: {total}",
+            artist=", ".join(album_labels_here),
+            color=color_album,
             lines=line_items,
         )
 
-        if is_shared:
-            color = "#9b59b6"
-            tooltip_artist = "Matter + Tunja"
-        else:
-            single = artists_here[0]
-            color = matter_cfg["color"] if single == "matter" else tunja_cfg["color"]
-            tooltip_artist = "Matter" if single == "matter" else "Tunja"
-
-        popup = folium.Popup(details_html, max_width=500)
-
-        if topo.kind == "country" and topo.country_geo_name and topo.country_geo_name in features_by_name:
-            feature = features_by_name[topo.country_geo_name]
-            gj = folium.GeoJson(
-                {"type": "FeatureCollection", "features": [feature]},
-                style_function=lambda _f, c=color, shared=is_shared: {
-                    "fillColor": c,
-                    "color": c,
-                    "weight": 2.5 if not shared else 3.0,
-                    "fillOpacity": 0.18 if not shared else 0.12,
-                },
-                highlight_function=lambda _f: {"weight": 4, "fillOpacity": 0.28},
-            )
-            gj.add_child(popup)
-            gj.add_to(m)
-
         marker_lat, marker_lon = topo.lat, topo.lon
+        line_coords = None
         if topo.kind == "river" and topo.line_coords:
             line_coords = list(topo.line_coords)
             center = polyline_midpoint(line_coords)
@@ -793,49 +846,116 @@ def main() -> None:
             if center not in line_coords:
                 mid = len(line_coords) // 2
                 line_coords.insert(mid, center)
-            pl = folium.PolyLine(
-                locations=line_coords,
-                color=color,
-                weight=4.5,
-                opacity=0.95,
+
+        # Artist mode geometry.
+        if topo.kind == "country" and topo.country_geo_name and topo.country_geo_name in features_by_name:
+            feature = features_by_name[topo.country_geo_name]
+            gj = folium.GeoJson(
+                {"type": "FeatureCollection", "features": [feature]},
+                style_function=lambda _f, c=color_artist, shared=is_shared: {
+                    "fillColor": c,
+                    "color": c,
+                    "weight": 2.5 if not shared else 3.0,
+                    "fillOpacity": 0.18 if not shared else 0.12,
+                },
+                highlight_function=lambda _f: {"weight": 4, "fillOpacity": 0.28},
             )
-            pl.add_child(folium.Popup(details_html, max_width=500))
-            pl.add_to(m)
+            gj.add_child(folium.Popup(details_html_artist, max_width=500))
+            gj.add_to(artist_fg)
+
+        if line_coords is not None:
+            pl = folium.PolyLine(locations=line_coords, color=color_artist, weight=4.5, opacity=0.95)
+            pl.add_child(folium.Popup(details_html_artist, max_width=500))
+            pl.add_to(artist_fg)
 
         if is_shared:
             size = 30 if topo.kind == "continent" else min(28, 14 + int(total**0.5 * 2))
             icon = split_div_icon(matter_cfg["color"], tunja_cfg["color"], size=size, ring=(topo.kind == "continent"))
-            mk = folium.Marker(
-                location=[marker_lat, marker_lon],
-                icon=icon,
-            )
-            mk.add_child(folium.Popup(details_html, max_width=500))
-            mk.add_to(m)
+            mk = folium.Marker(location=[marker_lat, marker_lon], icon=icon)
+            mk.add_child(folium.Popup(details_html_artist, max_width=500))
+            mk.add_to(artist_fg)
         else:
             radius = 18 if topo.kind == "continent" else min(16, 5 + total**0.5)
             cm = folium.CircleMarker(
                 location=[marker_lat, marker_lon],
                 radius=radius,
-                color=color,
+                color=color_artist,
                 fill=False if topo.kind == "continent" else True,
-                fill_color=color,
+                fill_color=color_artist,
                 fill_opacity=0.85,
                 weight=3 if topo.kind == "continent" else 2,
             )
-            cm.add_child(folium.Popup(details_html, max_width=500))
-            cm.add_to(m)
+            cm.add_child(folium.Popup(details_html_artist, max_width=500))
+            cm.add_to(artist_fg)
 
-    # Simple legend.
+        # Album mode geometry.
+        if topo.kind == "country" and topo.country_geo_name and topo.country_geo_name in features_by_name:
+            feature = features_by_name[topo.country_geo_name]
+            gj_alb = folium.GeoJson(
+                {"type": "FeatureCollection", "features": [feature]},
+                style_function=lambda _f, c=color_album: {
+                    "fillColor": c,
+                    "color": c,
+                    "weight": 2.4,
+                    "fillOpacity": 0.16,
+                },
+                highlight_function=lambda _f: {"weight": 4, "fillOpacity": 0.28},
+            )
+            gj_alb.add_child(folium.Popup(details_html_album, max_width=500))
+            gj_alb.add_to(album_fg)
+
+        if line_coords is not None:
+            pl_alb = folium.PolyLine(locations=line_coords, color=color_album, weight=4.5, opacity=0.95)
+            pl_alb.add_child(folium.Popup(details_html_album, max_width=500))
+            pl_alb.add_to(album_fg)
+
+        if len(album_colors_here) > 1:
+            size = 30 if topo.kind == "continent" else min(28, 14 + int(total**0.5 * 2))
+            mk_alb = folium.Marker(
+                location=[marker_lat, marker_lon],
+                icon=multi_div_icon(album_colors_here, size=size, ring=(topo.kind == "continent")),
+            )
+            mk_alb.add_child(folium.Popup(details_html_album, max_width=500))
+            mk_alb.add_to(album_fg)
+        else:
+            radius = 18 if topo.kind == "continent" else min(16, 5 + total**0.5)
+            cm_alb = folium.CircleMarker(
+                location=[marker_lat, marker_lon],
+                radius=radius,
+                color=color_album,
+                fill=False if topo.kind == "continent" else True,
+                fill_color=color_album,
+                fill_opacity=0.85,
+                weight=3 if topo.kind == "continent" else 2,
+            )
+            cm_alb.add_child(folium.Popup(details_html_album, max_width=500))
+            cm_alb.add_to(album_fg)
+
+    artist_fg.add_to(m)
+    album_fg.add_to(m)
+    folium.LayerControl(position="topright", collapsed=False).add_to(m)
+
+    album_items = "".join(
+        [
+            f"<label style='display:block; margin-bottom:2px; white-space:nowrap;'>"
+            f"<span style='display:inline-block;width:10px;height:10px;background:{album_color_map[a]};border-radius:2px;margin:0 6px;'></span>{escape(a)}"
+            f"</label>"
+            for a in all_album_labels
+        ]
+    )
     legend_html = f"""
-    <div style="position: fixed; bottom: 24px; left: 24px; z-index: 9999; background: rgba(20,20,20,0.92);
-         color: #f2f2f2; border:1px solid #666; border-radius:8px; padding:10px 12px; font:13px Arial;">
+    <div style="position: fixed; bottom: 24px; left: 24px; z-index: 9999; max-height:48vh; overflow:auto; background: rgba(20,20,20,0.92);
+         color: #f2f2f2; border:1px solid #666; border-radius:8px; padding:10px 12px; font:12px Arial;">
       <div style='font-weight:700; margin-bottom:6px;'>Legenda</div>
+      <div style='opacity:.9; margin-bottom:6px;'>Pogled preklopi v kontrolniku zgoraj desno.</div>
       <label style='display:block; margin-bottom:4px;'>
         <span style='display:inline-block;width:10px;height:10px;background:#c0392b;border-radius:50%;margin:0 6px;'></span>Matter
       </label>
       <label style='display:block; margin-bottom:4px;'>
         <span style='display:inline-block;width:10px;height:10px;background:#1f77b4;border-radius:50%;margin:0 6px;'></span>Tunja
       </label>
+      <div style='font-weight:700; margin:8px 0 6px 0;'>Albumi</div>
+      {album_items}
     </div>
     """
     m.get_root().html.add_child(Element(legend_html))
@@ -843,7 +963,6 @@ def main() -> None:
     out_map = COMBINED / "toponym_map_all_artists.html"
     out_map.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(out_map))
-
     print(f"Map: {out_map.resolve()}")
     print(f"Rows: {len(all_rows)}")
     print(f"Ambiguities: {len(ambiguity_rows)}")

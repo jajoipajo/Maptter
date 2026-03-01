@@ -20,6 +20,16 @@ RED = '#e01515'
 BLUE = '#1123ff'
 GRAY = '#d9d9d9'
 SLOVENIA_KEYS = {"ljubljana", "kamnik", "duplica", "krsko", "bled", "koper", "slovenija"}
+ALBUM_RELEASE_YEAR = {
+    ("matter", "Troglav I"): 2015,
+    ("matter", "Troglav II"): 2016,
+    ("matter", "Troglav III"): 2017,
+    ("matter", "Amphibios"): 2017,
+    ("matter", "Mrk"): 2018,
+    ("matter", "Haos"): 2019,
+    ("matter", "Predjed"): 2020,
+    ("tunja", "Kolajna"): 2023,
+}
 
 
 def slugify(text: str) -> str:
@@ -253,6 +263,16 @@ def norm_song(v: str) -> str:
     return t
 
 
+def album_sort_key(album_label: str) -> tuple[int, str, str]:
+    parts = album_label.split(" - ", 1)
+    artist = (parts[0] or "").strip().lower() if parts else ""
+    album = (parts[1] or "").strip() if len(parts) > 1 else ""
+    year = ALBUM_RELEASE_YEAR.get((artist, album))
+    if album.lower() == "unknown":
+        return (9999, artist, album)
+    return (year if year is not None else 9000, artist, album)
+
+
 def continent_for_toponym(row: dict) -> str:
     key = (row.get("toponim_key") or "").strip().lower()
     tip = (row.get("tip_lokacije") or "").strip().lower()
@@ -290,7 +310,7 @@ def build_stats_payload(mentions: list[dict]) -> dict:
             toponym_album_songsets[key][album_label].add(song_id)
             toponym_display[key] = (r.get("toponim") or key).strip()
 
-    albums = sorted(by_album.keys())
+    albums = sorted(by_album.keys(), key=album_sort_key)
     rows = []
     cat_celine = []
     cat_drzave = []
@@ -302,7 +322,7 @@ def build_stats_payload(mentions: list[dict]) -> dict:
 
     for alb in albums:
         rr = by_album[alb]
-        total_mentions = sum(to_int(x.get("stevilo_pojavljanj", "0")) for x in rr)
+        total_mentions = len(rr)
         total_mentions_all += total_mentions
         uniq = {x.get("toponim_key", "") for x in rr}
         global_unique.update(uniq)
@@ -392,7 +412,10 @@ def write_index() -> None:
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kje so Matter?</title>
+  <title>MAPTTER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <style>
     :root {{ --red:#c54444; --blue:#3555cc; --gray:#d3d7df; --ink:#0a0a0a; }}
     * {{ box-sizing:border-box; }}
@@ -401,7 +424,7 @@ def write_index() -> None:
       radial-gradient(circle at 18% 18%, rgba(197,68,68,.22), transparent 45%),
       radial-gradient(circle at 82% 12%, rgba(53,85,204,.22), transparent 40%),
       linear-gradient(180deg,#17191d 0%, #111318 100%); }}
-    .title {{ text-align:center; color:#e8ecf6; font-size:40px; font-weight:900; letter-spacing:.5px; margin:8px 0 18px; }}
+    .title {{ text-align:center; color:#f3f5fb; font-family:'Anton', Arial, sans-serif; font-size:92px; line-height:0.95; letter-spacing:1.5px; margin:4px 0 20px; text-transform:uppercase; text-shadow:0 10px 30px rgba(0,0,0,.45); }}
     .grid {{ display:grid; grid-template-columns:repeat(3, minmax(220px, 360px)); gap:24px;
       justify-content:center; align-content:center; min-height:100vh; padding:24px; }}
     .card {{ text-decoration:none; color:#111; border:2px solid #6b7691; border-radius:18px; overflow:hidden;
@@ -417,7 +440,7 @@ def write_index() -> None:
 </head>
 <body>
   <main>
-    <h1 class="title">Kje so Matter?</h1>
+    <h1 class="title">MAPTTER</h1>
     <section class="grid">
     <a class="card" href="zemljevid.html">
       <div class="art"></div>
@@ -652,15 +675,16 @@ const commonLayout = {{
   plot_bgcolor:'#171c28',
   font:{{color:'#eaf0ff'}},
   margin:{{l:65,r:20,t:18,b:95}},
-  xaxis:{{tickangle:-28}}
+  xaxis:{{tickangle:-28, automargin:true}},
+  hoverlabel:{{namelength:-1}}
 }};
 
 const cat = STATS.cat_mentions || {{}};
 Plotly.newPlot('chart-1', [
-  {{x: albums, y: cat.celine || [], type:'bar', name:'Celine', marker:{{color:'#6C8EAD'}}}},
-  {{x: albums, y: cat.drzave || [], type:'bar', name:'Države', marker:{{color:'#5B8A72'}}}},
-  {{x: albums, y: cat.kraji || [], type:'bar', name:'Kraji', marker:{{color:'#C98C5A'}}}},
-  {{x: albums, y: cat.slovenija || [], type:'bar', name:'Slovenija', marker:{{color:'#3F6FA6'}}}}
+  {{x: albums, y: cat.celine || [], type:'bar', name:'Celine', marker:{{color:'#6C8EAD'}}, customdata: albums, hovertemplate:'Album: %{{customdata}}<br>Kategorija: Celine<br>Št. pojavnosti: %{{y}}<extra></extra>'}},
+  {{x: albums, y: cat.drzave || [], type:'bar', name:'Države', marker:{{color:'#5B8A72'}}, customdata: albums, hovertemplate:'Album: %{{customdata}}<br>Kategorija: Države<br>Št. pojavnosti: %{{y}}<extra></extra>'}},
+  {{x: albums, y: cat.kraji || [], type:'bar', name:'Kraji', marker:{{color:'#C98C5A'}}, customdata: albums, hovertemplate:'Album: %{{customdata}}<br>Kategorija: Kraji<br>Št. pojavnosti: %{{y}}<extra></extra>'}},
+  {{x: albums, y: cat.slovenija || [], type:'bar', name:'Slovenija', marker:{{color:'#3F6FA6'}}, customdata: albums, hovertemplate:'Album: %{{customdata}}<br>Kategorija: Slovenija<br>Št. pojavnosti: %{{y}}<extra></extra>'}}
 ], {{
   ...commonLayout,
   barmode:'stack',
@@ -675,7 +699,9 @@ const tracesCont = contNames.map((c, i) => ({{
   y: contMatrix[c] || albums.map(()=>0),
   type:'bar',
   name:c,
-  marker:{{color: contColors[i % contColors.length]}}
+  marker:{{color: contColors[i % contColors.length]}},
+  customdata: albums,
+  hovertemplate:'Album: %{{customdata}}<br>Celina: %{{fullData.name}}<br>Št. pojavnosti: %{{y}}<extra></extra>'
 }}));
 Plotly.newPlot('chart-2', tracesCont, {{
   ...commonLayout,
@@ -691,7 +717,9 @@ const tracesTop = albums.map((alb, i) => ({{
   y: topAlbumMatrix[alb] || words.map(() => 0),
   type:'bar',
   name: alb,
-  marker: {{color: albumColors[i % albumColors.length]}}
+  marker: {{color: albumColors[i % albumColors.length]}},
+  customdata: Array(words.length).fill(alb),
+  hovertemplate: 'Album: %{{customdata}}<br>Toponim: %{{x}}<br>Št. različnih pesmi: %{{y}}<extra></extra>'
 }}));
 Plotly.newPlot('chart-3', tracesTop, {{
   ...commonLayout,
