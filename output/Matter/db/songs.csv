@@ -1,0 +1,62 @@
+artist,title,album,genius_url,yt_url,lyrics_file,mentions_total,has_synced_lrc
+matter,1000 Kristalov,Amphibios,https://genius.com/Matter-1000-kristalov-lyrics,,output\matter\lyrics\1000 Kristalov.txt,2,False
+matter,27 kometov,Troglav II,https://genius.com/Matter-27-kometov-lyrics,,output\matter\lyrics\27 kometov.txt,5,False
+matter,AB Raylight,Unknown,https://genius.com/Matter-ab-raylight-lyrics,,output\matter\lyrics\AB Raylight.txt,1,False
+matter,Alibi,Troglav III,https://genius.com/Matter-alibi-lyrics,,output\matter\lyrics\Alibi.txt,0,False
+matter,Anakonda,Amphibios,https://genius.com/Matter-anakonda-lyrics,,output\matter\lyrics\Anakonda.txt,0,False
+matter,Aurora,Troglav I,https://genius.com/Matter-aurora-lyrics,,output\matter\lyrics\Aurora.txt,2,False
+matter,Back and forth matter,Unknown,https://genius.com/Matter-back-and-forth-matter-lyrics,,output\matter\lyrics\Back and forth matter.txt,0,False
+matter,Bambi,Amphibios,https://genius.com/Matter-bambi-lyrics,,output\matter\lyrics\Bambi.txt,1,False
+matter,Bejrut,Mrk,https://genius.com/Matter-bejrut-lyrics,,output\matter\lyrics\Bejrut.txt,11,False
+matter,Bele gazele,Troglav II,https://genius.com/Matter-bele-gazele-lyrics,,output\matter\lyrics\Bele gazele.txt,2,False
+matter,Bomboni,Amphibios,https://genius.com/Matter-bomboni-lyrics,,output\matter\lyrics\Bomboni.txt,1,False
+matter,Dizeldorf,Amphibios,https://genius.com/Matter-dizeldorf-lyrics,,output\matter\lyrics\Dizeldorf.txt,2,False
+matter,Favela,Haos,https://genius.com/Matter-favela-lyrics,,output\matter\lyrics\Favela.txt,4,False
+matter,Gepek tok velk,Predjed,https://genius.com/Matter-gepek-tok-velk-lyrics,,output\matter\lyrics\Gepek tok velk.txt,1,False
+matter,Glitter,Unknown,https://genius.com/Matter-glitter-lyrics,,output\matter\lyrics\Glitter.txt,0,False
+matter,Jedla zvezde,Mrk,https://genius.com/Matter-jedla-zvezde-lyrics,,output\matter\lyrics\Jedla zvezde.txt,0,False
+matter,Jiu Jitsu,Troglav II,https://genius.com/Matter-jiu-jitsu-lyrics,,output\matter\lyrics\Jiu Jitsu.txt,8,False
+matter,Kameleoni,Unknown,https://genius.com/Matter-kameleoni-lyrics,,output\matter\lyrics\Kameleoni.txt,2,False
+matter,Klik,Haos,https://genius.com/Matter-klik-lyrics,,output\matter\lyrics\Klik.txt,0,False
+matter,Konte,Mrk,https://genius.com/Matter-konte-lyrics,,output\matter\lyrics\Konte.txt,1,False
+matter,Krst pri Duplici,Haos,https://genius.com/Matter-krst-pri-duplici-lyrics,,output\matter\lyrics\Krst pri Duplici.txt,4,False
+matter,K se vrnem,Haos,https://genius.com/Matter-k-se-vrnem-lyrics,,output\matter\lyrics\K se vrnem.txt,1,False
+matter,Ladje,Amphibios,https://genius.com/Matter-ladje-lyrics,,output\matter\lyrics\Ladje.txt,0,False
+matter,Laki,Troglav I,https://genius.com/Matter-laki-lyrics,,output\matter\lyrics\Laki.txt,2,False
+matter,Le le,Unknown,https://genius.com/Matter-le-le-lyrics,,output\matter\lyrics\Le le.txt,0,False
+matter,Lilija,Predjed,https://genius.com/Matter-lilija-lyrics,,output\matter\lyrics\Lilija.txt,0,False
+matter,Ljubljana,Troglav II,https://genius.com/Matter-ljubljana-lyrics,,output\matter\lyrics\Ljubljana.txt,14,False
+matter,Lover out the dark,Unknown,https://genius.com/Matter-lover-out-the-dark-lyrics,,output\matter\lyrics\Lover out the dark.txt,0,False
+matter,MANA,Mrk,https://genius.com/Matter-mana-lyrics,,output\matter\lyrics\MANA.txt,1,False
+matter,Meduze,Unknown,https://genius.com/Matter-meduze-lyrics,,output\matter\lyrics\Meduze.txt,3,False
+matter,Mnogo premal,Mrk,https://genius.com/Matter-mnogo-premal-lyrics,,output\matter\lyrics\Mnogo premal.txt,5,False
+matter,Mrki Flow,Amphibios,https://genius.com/Matter-mrki-flow-lyrics,,output\matter\lyrics\Mrki Flow.txt,1,False
+matter,Nana,Troglav II,https://genius.com/Matter-nana-lyrics,,output\matter\lyrics\Nana.txt,0,False
+matter,Nebotičnik,Mrk,https://genius.com/Matter-neboticnik-lyrics,,output\matter\lyrics\Nebotičnik.txt,0,False
+matter,Nevidna stran neba,Haos,https://genius.com/Matter-nevidna-stran-neba-lyrics,,output\matter\lyrics\Nevidna stran neba.txt,0,False
+matter,Novi primitivizem,Mrk,https://genius.com/Matter-novi-primitivizem-lyrics,,output\matter\lyrics\Novi primitivizem.txt,0,False
+matter,Pejt Sm,Haos,https://genius.com/Matter-pejt-sm-lyrics,,output\matter\lyrics\Pejt Sm.txt,0,False
+matter,Pimpin’ Piaf,Amphibios,https://genius.com/Matter-pimpin-piaf-lyrics,,output\matter\lyrics\Pimpin’ Piaf.txt,13,False
+matter,Polna luna,Haos,https://genius.com/Matter-polna-luna-lyrics,,output\matter\lyrics\Polna luna.txt,6,False
+matter,Polna Pluča,Predjed,https://genius.com/Matter-polna-pluca-lyrics,,output\matter\lyrics\Polna Pluča.txt,4,False
+matter,Raveland legende,Mrk,https://genius.com/Matter-raveland-legende-lyrics,,output\matter\lyrics\Raveland legende.txt,1,False
+matter,Rdeče rože,Haos,https://genius.com/Matter-rdece-roze-lyrics,,output\matter\lyrics\Rdeče rože.txt,2,False
+matter,Safari,Amphibios,https://genius.com/Matter-safari-lyrics,,output\matter\lyrics\Safari.txt,5,False
+matter,Satelit,Haos,https://genius.com/Matter-satelit-lyrics,,output\matter\lyrics\Satelit.txt,0,False
+matter,Sedimenti,Troglav I,https://genius.com/Matter-sedimenti-lyrics,,output\matter\lyrics\Sedimenti.txt,2,False
+matter,Sinovi Moje Madre,Mrk,https://genius.com/Matter-sinovi-moje-madre-lyrics,,output\matter\lyrics\Sinovi Moje Madre.txt,4,False
+matter,"Skit, ki bo hit",Amphibios,https://genius.com/Matter-skit-ki-bo-hit-lyrics,,"output\matter\lyrics\Skit, ki bo hit.txt",0,False
+matter,Skodelica čaja,Haos,https://genius.com/Matter-skodelica-caja-lyrics,,output\matter\lyrics\Skodelica čaja.txt,2,False
+matter,Sophia,Unknown,https://genius.com/Matter-sophia-lyrics,,output\matter\lyrics\Sophia.txt,2,False
+matter,Šuma,Mrk,https://genius.com/Matter-suma-lyrics,,output\matter\lyrics\Šuma.txt,6,False
+matter,Surogat,Mrk,https://genius.com/Matter-surogat-lyrics,,output\matter\lyrics\Surogat.txt,0,False
+matter,The Kid,Unknown,https://genius.com/Matter-the-kid-lyrics,,output\matter\lyrics\The Kid.txt,0,False
+matter,Toro,Predjed,https://genius.com/Matter-toro-lyrics,,output\matter\lyrics\Toro.txt,8,False
+matter,Tri Sonca,Amphibios,https://genius.com/Matter-tri-sonca-lyrics,,output\matter\lyrics\Tri Sonca.txt,2,False
+matter,Tri tri,Haos,https://genius.com/Matter-tri-tri-lyrics,,output\matter\lyrics\Tri tri.txt,1,False
+matter,Vanilla,Unknown,https://genius.com/Matter-vanilla-lyrics,,output\matter\lyrics\Vanilla.txt,0,False
+matter,Velik Njega,Amphibios,https://genius.com/Matter-velik-njega-lyrics,,output\matter\lyrics\Velik Njega.txt,0,False
+matter,V tvojem umu,Troglav III,https://genius.com/Matter-v-tvojem-umu-lyrics,,output\matter\lyrics\V tvojem umu.txt,8,False
+matter,Zlato Rumeno,Troglav III,https://genius.com/Matter-zlato-rumeno-lyrics,,output\matter\lyrics\Zlato Rumeno.txt,0,False
+matter,Zlato v zobeh,Unknown,https://genius.com/Matter-zlato-v-zobeh-lyrics,,output\matter\lyrics\Zlato v zobeh.txt,0,False
+matter,Zonzey,Unknown,https://genius.com/Matter-and-mrfy-zonzey-lyrics,,output\matter\lyrics\Zonzey.txt,4,False

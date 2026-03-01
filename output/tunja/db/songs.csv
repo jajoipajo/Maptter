@@ -1,0 +1,12 @@
+artist,title,album,genius_url,yt_url,lyrics_file,mentions_total,has_synced_lrc
+tunja,7G,Kolajna,https://genius.com/Tunja-7g-lyrics,,output\tunja\lyrics\7G.txt,0,False
+tunja,Akakij,Kolajna,https://genius.com/Tunja-akakij-lyrics,,output\tunja\lyrics\Akakij.txt,0,False
+tunja,Aurora borealis,Kolajna,https://genius.com/Tunja-aurora-borealis-lyrics,,output\tunja\lyrics\Aurora borealis.txt,0,False
+tunja,Digitalna smrt,Kolajna,https://genius.com/Tunja-digitalna-smrt-lyrics,,output\tunja\lyrics\Digitalna smrt.txt,1,False
+tunja,Neki na O,Kolajna,https://genius.com/Tunja-neki-na-o-lyrics,,output\tunja\lyrics\Neki na O.txt,0,False
+tunja,Opombe,Kolajna,https://genius.com/Tunja-opombe-lyrics,,output\tunja\lyrics\Opombe.txt,0,False
+tunja,Por favor,Kolajna,https://genius.com/Tunja-por-favor-lyrics,,output\tunja\lyrics\Por favor.txt,0,False
+tunja,Prosto plava,Kolajna,https://genius.com/Tunja-prosto-plava-lyrics,,output\tunja\lyrics\Prosto plava.txt,1,False
+tunja,Salute,Kolajna,https://genius.com/Tunja-salute-lyrics,,output\tunja\lyrics\Salute.txt,0,False
+tunja,Surovina,Kolajna,https://genius.com/Tunja-surovina-lyrics,,output\tunja\lyrics\Surovina.txt,3,False
+tunja,Zdravljica,Kolajna,https://genius.com/Tunja-zdravljica-lyrics,,output\tunja\lyrics\Zdravljica.txt,0,False

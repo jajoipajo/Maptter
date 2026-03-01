@@ -1,0 +1,7 @@
+﻿# keep secrets and generated caches out of repo
+.env
+__pycache__/
+*.pyc
+output/**/_debug_*.png
+output/**/_verify_*.png
+output/combined/site/_debug_*.png

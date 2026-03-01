@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kje so Matter?</title>
+  <style>
+    :root { --red:#c54444; --blue:#3555cc; --gray:#d3d7df; --ink:#0a0a0a; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:Arial, sans-serif; color:#111;
+      background:
+      radial-gradient(circle at 18% 18%, rgba(197,68,68,.22), transparent 45%),
+      radial-gradient(circle at 82% 12%, rgba(53,85,204,.22), transparent 40%),
+      linear-gradient(180deg,#17191d 0%, #111318 100%); }
+    .title { text-align:center; color:#e8ecf6; font-size:40px; font-weight:900; letter-spacing:.5px; margin:8px 0 18px; }
+    .grid { display:grid; grid-template-columns:repeat(3, minmax(220px, 360px)); gap:24px;
+      justify-content:center; align-content:center; min-height:100vh; padding:24px; }
+    .card { text-decoration:none; color:#111; border:2px solid #6b7691; border-radius:18px; overflow:hidden;
+      box-shadow:0 10px 24px rgba(0,0,0,.30); background:#f2f4f8; }
+    .art { height:220px; position:relative; background: conic-gradient(from 90deg at 50% 50%, var(--red) 0 25%, var(--blue) 25% 50%, #ca4a4a 50% 75%, var(--gray) 75% 100%); }
+    .art::after { content:''; position:absolute; left:0; right:0; bottom:0; height:46%;
+      background:linear-gradient(135deg, transparent 0 22%, var(--blue) 22% 33%, transparent 33% 44%, var(--blue) 44% 62%, transparent 62% 73%, var(--blue) 73% 83%, transparent 83% 100%); }
+    .txt { padding:16px; background:#f2f4f8; }
+    .t { font-size:28px; font-weight:900; margin:0 0 6px; text-transform:uppercase; letter-spacing:.5px; }
+    .s { margin:0; color:#333; font-size:14px; }
+    @media (max-width: 700px) { .grid { grid-template-columns:1fr; } .art { height:200px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="title">Kje so Matter?</h1>
+    <section class="grid">
+    <a class="card" href="zemljevid.html">
+      <div class="art"></div>
+      <div class="txt"><p class="t">Zemljevid</p><p class="s">Interaktivni prikaz toponimov</p></div>
+    </a>
+    <a class="card" href="quiz.html">
+      <div class="art"></div>
+      <div class="txt"><p class="t">Kviz</p><p class="s">Ugani skladbo po toponimu</p></div>
+    </a>
+    <a class="card" href="stats.html">
+      <div class="art"></div>
+      <div class="txt"><p class="t">Statistika</p><p class="s">Toponimi po albumih in celinah</p></div>
+    </a>
+    </section>
+  </main>
+</body>
+</html>

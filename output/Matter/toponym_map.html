@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2216a733206d386d05d9263724abb96e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_2216a733206d386d05d9263724abb96e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2216a733206d386d05d9263724abb96e = L.map(
+                "map_2216a733206d386d05d9263724abb96e",
+                {
+                    center: [46.15, 14.99],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b1f71e450afda2765f08e5a201067726 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b1f71e450afda2765f08e5a201067726.addTo(map_2216a733206d386d05d9263724abb96e);
+        
+    
+            var marker_cluster_786f968da8039c07a8d592e68c525e3f = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_0c576736ee5c9d3663976cb09b94824d = L.circleMarker(
+                [39.8283, -98.5795],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_71e0cc9f3c4a5985372b9ca6b996c92a = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_65965eb9ea420aae1769cbbee93cdd91 = $(`<div id="html_65965eb9ea420aae1769cbbee93cdd91" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>amerika</h4><div><b>Koordinata:</b> 39.8283, -98.5795</div><div><b>Skupna pojavnost:</b> 1</div><div><b>Skladbe:</b></div><ul><li>Gepek tok velk.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_71e0cc9f3c4a5985372b9ca6b996c92a.setContent(html_65965eb9ea420aae1769cbbee93cdd91);
+            
+        
+
+        circle_marker_0c576736ee5c9d3663976cb09b94824d.bindPopup(popup_71e0cc9f3c4a5985372b9ca6b996c92a)
+        ;
+
+        
+    
+    
+            circle_marker_0c576736ee5c9d3663976cb09b94824d.bindTooltip(
+                `<div>
+                     amerika (1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f38522fe48d038030f8f6d67cb71063 = L.circleMarker(
+                [34.0489, -111.0937],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.732050807568877, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_693b3a669164bd573cb05d65b0ed40fb = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_0eaeebfeaaebc549c9360120c92e01d1 = $(`<div id="html_0eaeebfeaaebc549c9360120c92e01d1" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>arizona</h4><div><b>Koordinata:</b> 34.0489, -111.0937</div><div><b>Skupna pojavnost:</b> 3</div><div><b>Skladbe:</b></div><ul><li>Polna Pluča.txt: <b>3</b></li></ul></div></div>`)[0];
+                popup_693b3a669164bd573cb05d65b0ed40fb.setContent(html_0eaeebfeaaebc549c9360120c92e01d1);
+            
+        
+
+        circle_marker_1f38522fe48d038030f8f6d67cb71063.bindPopup(popup_693b3a669164bd573cb05d65b0ed40fb)
+        ;
+
+        
+    
+    
+            circle_marker_1f38522fe48d038030f8f6d67cb71063.bindTooltip(
+                `<div>
+                     arizona (3)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_77b2f206513c02d3fd4a3e80ab9b91bc = L.circleMarker(
+                [32.5422, 44.42],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.0, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_02b62fbc448047fe301fe8707ef68467 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_979eaee804667595a1ddd439acb5eee9 = $(`<div id="html_979eaee804667595a1ddd439acb5eee9" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>babilon</h4><div><b>Koordinata:</b> 32.5422, 44.4200</div><div><b>Skupna pojavnost:</b> 9</div><div><b>Skladbe:</b></div><ul><li>V tvojem umu.txt: <b>8</b></li><li>Dizeldorf.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_02b62fbc448047fe301fe8707ef68467.setContent(html_979eaee804667595a1ddd439acb5eee9);
+            
+        
+
+        circle_marker_77b2f206513c02d3fd4a3e80ab9b91bc.bindPopup(popup_02b62fbc448047fe301fe8707ef68467)
+        ;
+
+        
+    
+    
+            circle_marker_77b2f206513c02d3fd4a3e80ab9b91bc.bindTooltip(
+                `<div>
+                     babilon (9)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9bf4ef32ebef42da80b4cc112fa3cea1 = L.circleMarker(
+                [33.8938, 35.5018],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.449489742783178, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_b8ec3cab0da46d6d833dd7151fedf43e = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_841cb6c02ae6e2e9c01d643782f1d674 = $(`<div id="html_841cb6c02ae6e2e9c01d643782f1d674" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>bejrut</h4><div><b>Koordinata:</b> 33.8938, 35.5018</div><div><b>Skupna pojavnost:</b> 6</div><div><b>Skladbe:</b></div><ul><li>Bejrut.txt: <b>4</b></li><li>1000 Kristalov.txt: <b>2</b></li></ul></div></div>`)[0];
+                popup_b8ec3cab0da46d6d833dd7151fedf43e.setContent(html_841cb6c02ae6e2e9c01d643782f1d674);
+            
+        
+
+        circle_marker_9bf4ef32ebef42da80b4cc112fa3cea1.bindPopup(popup_b8ec3cab0da46d6d833dd7151fedf43e)
+        ;
+
+        
+    
+    
+            circle_marker_9bf4ef32ebef42da80b4cc112fa3cea1.bindTooltip(
+                `<div>
+                     bejrut (6)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ea74860282ec8a1708f2e8362bd86498 = L.circleMarker(
+                [52.52, 13.405],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.732050807568877, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_4ee4f56d8f07bcef36296c47394a3032 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_87528d9779c6f4ac6e5b1d4bf62aa9cb = $(`<div id="html_87528d9779c6f4ac6e5b1d4bf62aa9cb" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>berlin</h4><div><b>Koordinata:</b> 52.5200, 13.4050</div><div><b>Skupna pojavnost:</b> 3</div><div><b>Skladbe:</b></div><ul><li>27 kometov.txt: <b>3</b></li></ul></div></div>`)[0];
+                popup_4ee4f56d8f07bcef36296c47394a3032.setContent(html_87528d9779c6f4ac6e5b1d4bf62aa9cb);
+            
+        
+
+        circle_marker_ea74860282ec8a1708f2e8362bd86498.bindPopup(popup_4ee4f56d8f07bcef36296c47394a3032)
+        ;
+
+        
+    
+    
+            circle_marker_ea74860282ec8a1708f2e8362bd86498.bindTooltip(
+                `<div>
+                     berlin (3)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61df4be1a11ff9be771dd57bb6dffa8f = L.circleMarker(
+                [43.9159, 17.6791],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_ad3aa3f7258fa93a029ede97f6e48bd2 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_db2b3ee59fdcd214a938c532481b02fa = $(`<div id="html_db2b3ee59fdcd214a938c532481b02fa" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>bosna</h4><div><b>Koordinata:</b> 43.9159, 17.6791</div><div><b>Skupna pojavnost:</b> 1</div><div><b>Skladbe:</b></div><ul><li>Raveland legende.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_ad3aa3f7258fa93a029ede97f6e48bd2.setContent(html_db2b3ee59fdcd214a938c532481b02fa);
+            
+        
+
+        circle_marker_61df4be1a11ff9be771dd57bb6dffa8f.bindPopup(popup_ad3aa3f7258fa93a029ede97f6e48bd2)
+        ;
+
+        
+    
+    
+            circle_marker_61df4be1a11ff9be771dd57bb6dffa8f.bindTooltip(
+                `<div>
+                     bosna (1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7123a5cdaecfa18d120e8c069364b777 = L.circleMarker(
+                [41.8781, -87.6298],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_1f83b74280b43aeb9eb7b45ee916ca5a = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_1ed21976156f9dd9e7f6677b316e619b = $(`<div id="html_1ed21976156f9dd9e7f6677b316e619b" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>chicago</h4><div><b>Koordinata:</b> 41.8781, -87.6298</div><div><b>Skupna pojavnost:</b> 1</div><div><b>Skladbe:</b></div><ul><li>Dizeldorf.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_1f83b74280b43aeb9eb7b45ee916ca5a.setContent(html_1ed21976156f9dd9e7f6677b316e619b);
+            
+        
+
+        circle_marker_7123a5cdaecfa18d120e8c069364b777.bindPopup(popup_1f83b74280b43aeb9eb7b45ee916ca5a)
+        ;
+
+        
+    
+    
+            circle_marker_7123a5cdaecfa18d120e8c069364b777.bindTooltip(
+                `<div>
+                     chicago (1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ce9b2afc5db1946c3eb8a3abf198cca = L.circleMarker(
+                [46.2065, 14.6008],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.242640687119284, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_95d2a7c5f4f148c0f7ea9c87d1c01abe = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_3d062c02959dd2349d956e8804381026 = $(`<div id="html_3d062c02959dd2349d956e8804381026" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>duplica</h4><div><b>Koordinata:</b> 46.2065, 14.6008</div><div><b>Skupna pojavnost:</b> 18</div><div><b>Skladbe:</b></div><ul><li>Polna luna.txt: <b>5</b></li><li>Safari.txt: <b>3</b></li><li>Favela.txt: <b>2</b></li><li>Aurora.txt: <b>1</b></li><li>Bele gazele.txt: <b>1</b></li><li>Jiu Jitsu.txt: <b>1</b></li><li>Krst pri Duplici.txt: <b>1</b></li><li>MANA.txt: <b>1</b></li><li>Sedimenti.txt: <b>1</b></li><li>Skodelica čaja.txt: <b>1</b></li><li>Zonzey.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_95d2a7c5f4f148c0f7ea9c87d1c01abe.setContent(html_3d062c02959dd2349d956e8804381026);
+            
+        
+
+        circle_marker_4ce9b2afc5db1946c3eb8a3abf198cca.bindPopup(popup_95d2a7c5f4f148c0f7ea9c87d1c01abe)
+        ;
+
+        
+    
+    
+            circle_marker_4ce9b2afc5db1946c3eb8a3abf198cca.bindTooltip(
+                `<div>
+                     duplica (18)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_73a852329c6b769e5b4d09036db17a03 = L.circleMarker(
+                [41.8719, 12.5674],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.414213562373095, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_32b9a6300550bdb6eb168632122792c6 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_c3b56cc9f8e4f65604c54be266c286ff = $(`<div id="html_c3b56cc9f8e4f65604c54be266c286ff" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>italija</h4><div><b>Koordinata:</b> 41.8719, 12.5674</div><div><b>Skupna pojavnost:</b> 2</div><div><b>Skladbe:</b></div><ul><li>Laki.txt: <b>1</b></li><li>Sedimenti.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_32b9a6300550bdb6eb168632122792c6.setContent(html_c3b56cc9f8e4f65604c54be266c286ff);
+            
+        
+
+        circle_marker_73a852329c6b769e5b4d09036db17a03.bindPopup(popup_32b9a6300550bdb6eb168632122792c6)
+        ;
+
+        
+    
+    
+            circle_marker_73a852329c6b769e5b4d09036db17a03.bindTooltip(
+                `<div>
+                     italija (2)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_79e90a1782f7be8601a8df7a203cd765 = L.circleMarker(
+                [46.2259, 14.6121],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.385164807134505, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_7e4c2b1da4c6556e1d996e273fd007d6 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_732bb9b31dc2782623785bc4d7b420b3 = $(`<div id="html_732bb9b31dc2782623785bc4d7b420b3" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>kamnik</h4><div><b>Koordinata:</b> 46.2259, 14.6121</div><div><b>Skupna pojavnost:</b> 29</div><div><b>Skladbe:</b></div><ul><li>Jiu Jitsu.txt: <b>7</b></li><li>Krst pri Duplici.txt: <b>3</b></li><li>Toro.txt: <b>3</b></li><li>Kameleoni.txt: <b>2</b></li><li>Sophia.txt: <b>2</b></li><li>Tri Sonca.txt: <b>2</b></li><li>Aurora.txt: <b>1</b></li><li>Bambi.txt: <b>1</b></li><li>Bele gazele.txt: <b>1</b></li><li>K se vrnem.txt: <b>1</b></li><li>Konte.txt: <b>1</b></li><li>Laki.txt: <b>1</b></li><li>Ljubljana.txt: <b>1</b></li><li>Safari.txt: <b>1</b></li><li>Tri tri.txt: <b>1</b></li><li>Zonzey.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_7e4c2b1da4c6556e1d996e273fd007d6.setContent(html_732bb9b31dc2782623785bc4d7b420b3);
+            
+        
+
+        circle_marker_79e90a1782f7be8601a8df7a203cd765.bindPopup(popup_7e4c2b1da4c6556e1d996e273fd007d6)
+        ;
+
+        
+    
+    
+            circle_marker_79e90a1782f7be8601a8df7a203cd765.bindTooltip(
+                `<div>
+                     kamnik (29)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d23921ca6243f0b63405259b7607ddfa = L.circleMarker(
+                [45.5481, 13.7302],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.414213562373095, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_aeaf786023d69cb9878e4ab75e57087f = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_576d87aa8633308db4ee3f55e73ca024 = $(`<div id="html_576d87aa8633308db4ee3f55e73ca024" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>koper</h4><div><b>Koordinata:</b> 45.5481, 13.7302</div><div><b>Skupna pojavnost:</b> 2</div><div><b>Skladbe:</b></div><ul><li>Favela.txt: <b>2</b></li></ul></div></div>`)[0];
+                popup_aeaf786023d69cb9878e4ab75e57087f.setContent(html_576d87aa8633308db4ee3f55e73ca024);
+            
+        
+
+        circle_marker_d23921ca6243f0b63405259b7607ddfa.bindPopup(popup_aeaf786023d69cb9878e4ab75e57087f)
+        ;
+
+        
+    
+    
+            circle_marker_d23921ca6243f0b63405259b7607ddfa.bindTooltip(
+                `<div>
+                     koper (2)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f354c5d2145e3cff5719c37b7c51aba = L.circleMarker(
+                [46.0569, 14.5058],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.385164807134505, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_a6295bc3b76f009e32309776c18503cf = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_09d6a30cfda7653dc2e6ad1827ec1d3d = $(`<div id="html_09d6a30cfda7653dc2e6ad1827ec1d3d" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>ljubljana</h4><div><b>Koordinata:</b> 46.0569, 14.5058</div><div><b>Skupna pojavnost:</b> 29</div><div><b>Skladbe:</b></div><ul><li>Ljubljana.txt: <b>13</b></li><li>Pimpin’ Piaf.txt: <b>13</b></li><li>Rdeče rože.txt: <b>2</b></li><li>Skodelica čaja.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_a6295bc3b76f009e32309776c18503cf.setContent(html_09d6a30cfda7653dc2e6ad1827ec1d3d);
+            
+        
+
+        circle_marker_7f354c5d2145e3cff5719c37b7c51aba.bindPopup(popup_a6295bc3b76f009e32309776c18503cf)
+        ;
+
+        
+    
+    
+            circle_marker_7f354c5d2145e3cff5719c37b7c51aba.bindTooltip(
+                `<div>
+                     ljubljana (29)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e2f3847f8b12553da97eaab99a962f81 = L.circleMarker(
+                [23.6345, -102.5528],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.23606797749979, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_23f36033e3d219a9059e8895575940fd = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_69fd2c520a3f64e925fdfac9494f0a1c = $(`<div id="html_69fd2c520a3f64e925fdfac9494f0a1c" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>mehika</h4><div><b>Koordinata:</b> 23.6345, -102.5528</div><div><b>Skupna pojavnost:</b> 5</div><div><b>Skladbe:</b></div><ul><li>Mnogo premal.txt: <b>5</b></li></ul></div></div>`)[0];
+                popup_23f36033e3d219a9059e8895575940fd.setContent(html_69fd2c520a3f64e925fdfac9494f0a1c);
+            
+        
+
+        circle_marker_e2f3847f8b12553da97eaab99a962f81.bindPopup(popup_23f36033e3d219a9059e8895575940fd)
+        ;
+
+        
+    
+    
+            circle_marker_e2f3847f8b12553da97eaab99a962f81.bindTooltip(
+                `<div>
+                     mehika (5)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_28b1e785beb663eecc26a4d3e0bd792c = L.circleMarker(
+                [45.4642, 9.19],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.23606797749979, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_9a14671dfac586138eb997233ab724e0 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_9f92da9c55c1bf752e2e9d4f87e50a86 = $(`<div id="html_9f92da9c55c1bf752e2e9d4f87e50a86" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>milano</h4><div><b>Koordinata:</b> 45.4642, 9.1900</div><div><b>Skupna pojavnost:</b> 5</div><div><b>Skladbe:</b></div><ul><li>Meduze.txt: <b>3</b></li><li>Sinovi Moje Madre.txt: <b>2</b></li></ul></div></div>`)[0];
+                popup_9a14671dfac586138eb997233ab724e0.setContent(html_9f92da9c55c1bf752e2e9d4f87e50a86);
+            
+        
+
+        circle_marker_28b1e785beb663eecc26a4d3e0bd792c.bindPopup(popup_9a14671dfac586138eb997233ab724e0)
+        ;
+
+        
+    
+    
+            circle_marker_28b1e785beb663eecc26a4d3e0bd792c.bindTooltip(
+                `<div>
+                     milano (5)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96a073793525bc8f2efbe27b99cb6754 = L.circleMarker(
+                [41.9028, 12.4964],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.414213562373095, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_2554ebe2a80751525d0a9164855005f0 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_671a994e2840733a1a69d062d0a2bf70 = $(`<div id="html_671a994e2840733a1a69d062d0a2bf70" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>rim</h4><div><b>Koordinata:</b> 41.9028, 12.4964</div><div><b>Skupna pojavnost:</b> 2</div><div><b>Skladbe:</b></div><ul><li>Sinovi Moje Madre.txt: <b>2</b></li></ul></div></div>`)[0];
+                popup_2554ebe2a80751525d0a9164855005f0.setContent(html_671a994e2840733a1a69d062d0a2bf70);
+            
+        
+
+        circle_marker_96a073793525bc8f2efbe27b99cb6754.bindPopup(popup_2554ebe2a80751525d0a9164855005f0)
+        ;
+
+        
+    
+    
+            circle_marker_96a073793525bc8f2efbe27b99cb6754.bindTooltip(
+                `<div>
+                     rim (2)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7a343adc66bd164e36868246fc4dc1a2 = L.circleMarker(
+                [0.5897, 101.3431],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.449489742783178, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_5c3a784084a8047233ccd5f2e93aa4e2 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_18dbefb45bbcd1b1eae674f3258d6739 = $(`<div id="html_18dbefb45bbcd1b1eae674f3258d6739" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>sumatra</h4><div><b>Koordinata:</b> 0.5897, 101.3431</div><div><b>Skupna pojavnost:</b> 6</div><div><b>Skladbe:</b></div><ul><li>Šuma.txt: <b>6</b></li></ul></div></div>`)[0];
+                popup_5c3a784084a8047233ccd5f2e93aa4e2.setContent(html_18dbefb45bbcd1b1eae674f3258d6739);
+            
+        
+
+        circle_marker_7a343adc66bd164e36868246fc4dc1a2.bindPopup(popup_5c3a784084a8047233ccd5f2e93aa4e2)
+        ;
+
+        
+    
+    
+            circle_marker_7a343adc66bd164e36868246fc4dc1a2.bindTooltip(
+                `<div>
+                     sumatra (6)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5da005733a826e15e4cd9403393cc610 = L.circleMarker(
+                [31.9686, -99.9018],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_995af51a1a13ef56541717b981f12126 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_e0a0e2af11af189ef483e1c0ed37cfc0 = $(`<div id="html_e0a0e2af11af189ef483e1c0ed37cfc0" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>texas</h4><div><b>Koordinata:</b> 31.9686, -99.9018</div><div><b>Skupna pojavnost:</b> 1</div><div><b>Skladbe:</b></div><ul><li>Safari.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_995af51a1a13ef56541717b981f12126.setContent(html_e0a0e2af11af189ef483e1c0ed37cfc0);
+            
+        
+
+        circle_marker_5da005733a826e15e4cd9403393cc610.bindPopup(popup_995af51a1a13ef56541717b981f12126)
+        ;
+
+        
+    
+    
+            circle_marker_5da005733a826e15e4cd9403393cc610.bindTooltip(
+                `<div>
+                     texas (1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ff8bd2e63565f6593dc48cf88e23e39 = L.circleMarker(
+                [35.6762, 139.6503],
+                {"bubblingMouseEvents": true, "color": "#b22222", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b22222", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.82842712474619, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_786f968da8039c07a8d592e68c525e3f);
+        
+    
+        var popup_f5093876c4d78724745205b96e525b0e = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_73966aa9281360e39f26ec2d48474975 = $(`<div id="html_73966aa9281360e39f26ec2d48474975" style="width: 100.0%; height: 100.0%;"><div style='min-width:280px'><h4 style='margin:0 0 8px 0'>tokio</h4><div><b>Koordinata:</b> 35.6762, 139.6503</div><div><b>Skupna pojavnost:</b> 8</div><div><b>Skladbe:</b></div><ul><li>Bejrut.txt: <b>7</b></li><li>Bomboni.txt: <b>1</b></li></ul></div></div>`)[0];
+                popup_f5093876c4d78724745205b96e525b0e.setContent(html_73966aa9281360e39f26ec2d48474975);
+            
+        
+
+        circle_marker_4ff8bd2e63565f6593dc48cf88e23e39.bindPopup(popup_f5093876c4d78724745205b96e525b0e)
+        ;
+
+        
+    
+    
+            circle_marker_4ff8bd2e63565f6593dc48cf88e23e39.bindTooltip(
+                `<div>
+                     tokio (8)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_786f968da8039c07a8d592e68c525e3f.addTo(map_2216a733206d386d05d9263724abb96e);
+        
+</script>
+</html>

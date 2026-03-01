@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statistika Toponimov</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    body {
+      margin:0;
+      font-family: Arial, sans-serif;
+      color:#eaf0ff;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(197,68,68,.18), transparent 38%),
+        radial-gradient(circle at 85% 18%, rgba(53,85,204,.18), transparent 36%),
+        linear-gradient(180deg,#17191d 0%, #101219 100%);
+    }
+    .wrap { width:min(96vw, 1700px); margin:0 auto; padding:18px 0 36px; }
+    .top { display:flex; justify-content:space-between; align-items:center; margin:0 1.4vw 16px; }
+    .back { color:#fff; text-decoration:none; border:2px solid #7f8aa5; padding:8px 12px; border-radius:10px; background:#1b1f28; font-weight:700; }
+    .title { font-size:34px; margin:0; font-weight:900; }
+    .intro { margin:0 1.4vw 14px; background:#171c28; border:1px solid #4a5369; border-radius:12px; padding:14px; line-height:1.45; }
+    .panel { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:20px 1.4vw; }
+    .panel h2 { margin:0 0 8px; font-size:24px; }
+    .panel p { margin:0 0 12px; color:#c9d2e8; }
+    .plot { width:100%; height:72vh; background:#171c28; border:1px solid #4a5369; border-radius:12px; }
+    @media (max-width: 980px) { .plot { height:62vh; } .panel { min-height:auto; padding-bottom:28px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1 class="title">Statistika</h1>
+      <a class="back" href="index.html">Nazaj</a>
+    </div>
+    <div class="intro" id="intro"></div>
+    <section class="panel">
+      <h2>1. Št. toponimov po albumih (po kategorijah)</h2>
+      <p>Stacked prikaz pojavitev: celine, države, kraji in Slovenija (slovenski kraji).</p>
+      <div id="chart-1" class="plot"></div>
+    </section>
+    <section class="panel">
+      <h2>2. Celinske razporeditve po albumih</h2>
+      <p>Primerjava pojavitev po celinah za vsak album.</p>
+      <div id="chart-2" class="plot"></div>
+    </section>
+    <section class="panel">
+      <h2>3. Top 5 toponimov po številu različnih pesmi</h2>
+      <p>Na osi x so besede; y prikazuje število različnih pesmi, razdeljeno po albumih.</p>
+      <div id="chart-3" class="plot"></div>
+    </section>
+  </div>
+<script>
+const STATS = {"albums": ["Matter - Amphibios", "Matter - Haos", "Matter - Mrk", "Matter - Predjed", "Matter - Troglav I", "Matter - Troglav II", "Matter - Troglav III", "Matter - Unknown", "Tunja - Kolajna"], "rows": [{"album": "Matter - Amphibios", "mentions_total": 31, "unique_toponyms": 12, "unique_countries": 1, "unique_cities": 10, "unique_continents": 1}, {"album": "Matter - Haos", "mentions_total": 24, "unique_toponyms": 7, "unique_countries": 1, "unique_cities": 6, "unique_continents": 0}, {"album": "Matter - Mrk", "mentions_total": 36, "unique_toponyms": 13, "unique_countries": 2, "unique_cities": 11, "unique_continents": 0}, {"album": "Matter - Predjed", "mentions_total": 9, "unique_toponyms": 4, "unique_countries": 1, "unique_cities": 3, "unique_continents": 0}, {"album": "Matter - Troglav I", "mentions_total": 6, "unique_toponyms": 3, "unique_countries": 1, "unique_cities": 2, "unique_continents": 0}, {"album": "Matter - Troglav II", "mentions_total": 32, "unique_toponyms": 6, "unique_countries": 1, "unique_cities": 5, "unique_continents": 0}, {"album": "Matter - Troglav III", "mentions_total": 11, "unique_toponyms": 4, "unique_countries": 1, "unique_cities": 2, "unique_continents": 0}, {"album": "Matter - Unknown", "mentions_total": 11, "unique_toponyms": 4, "unique_countries": 0, "unique_cities": 4, "unique_continents": 0}, {"album": "Tunja - Kolajna", "mentions_total": 12, "unique_toponyms": 9, "unique_countries": 1, "unique_cities": 6, "unique_continents": 2}], "cat_mentions": {"celine": [1, 0, 0, 0, 0, 0, 0, 0, 2], "drzave": [1, 1, 2, 1, 2, 1, 1, 0, 1], "kraji": [6, 3, 8, 2, 0, 2, 3, 2, 5], "slovenija": [6, 10, 3, 2, 4, 6, 0, 4, 1]}, "continents": ["Afrika", "Azija", "Evropa", "Južna Amerika", "Severna Amerika"], "continent_matrix": {"Afrika": [0, 0, 0, 0, 0, 0, 0, 1, 2], "Azija": [4, 1, 3, 0, 0, 0, 3, 0, 1], "Evropa": [8, 11, 7, 3, 6, 9, 0, 5, 3], "Južna Amerika": [0, 0, 1, 0, 0, 0, 0, 0, 0], "Severna Amerika": [2, 2, 2, 2, 0, 0, 1, 0, 3]}, "top5_words": ["Kamnik", "Duplica", "Ljubljana", "Arizona", "Babilon"], "top5_totals": [17, 12, 4, 2, 2], "top5_album_matrix": {"Matter - Amphibios": [3, 1, 1, 0, 1], "Matter - Haos": [3, 4, 2, 0, 0], "Matter - Mrk": [1, 1, 0, 0, 0], "Matter - Predjed": [2, 0, 0, 1, 0], "Matter - Troglav I": [2, 2, 0, 0, 0], "Matter - Troglav II": [3, 2, 1, 0, 0], "Matter - Troglav III": [0, 0, 0, 0, 1], "Matter - Unknown": [3, 1, 0, 0, 0], "Tunja - Kolajna": [0, 1, 0, 1, 0]}, "summary": {"total_mentions_all": 172, "total_unique_toponyms": 39, "total_unique_countries": 8, "total_unique_cities": 28, "albums_count": 9, "top_album": "Matter - Mrk", "top_album_mentions": 36}};
+const rows = STATS.rows || [];
+const albums = STATS.albums || [];
+const s = STATS.summary || {};
+const modeCfg = {responsive:true, displayModeBar:false};
+
+document.getElementById('intro').innerHTML =
+  `Skupaj smo zaznali <b>${s.total_unique_toponyms || 0}</b> unikatnih toponimov in <b>${s.total_mentions_all || 0}</b> vseh pojavitev. ` +
+  `Od tega je <b>${s.total_unique_countries || 0}</b> držav in <b>${s.total_unique_cities || 0}</b> mest/krajev. ` +
+  `V analizi je <b>${s.albums_count || 0}</b> albumov. Največ pojavitev ima album <b>${s.top_album || '-'}</b> (${s.top_album_mentions || 0}).`;
+
+const commonLayout = {
+  paper_bgcolor:'#171c28',
+  plot_bgcolor:'#171c28',
+  font:{color:'#eaf0ff'},
+  margin:{l:65,r:20,t:18,b:95},
+  xaxis:{tickangle:-28}
+};
+
+const cat = STATS.cat_mentions || {};
+Plotly.newPlot('chart-1', [
+  {x: albums, y: cat.celine || [], type:'bar', name:'Celine', marker:{color:'#6C8EAD'}},
+  {x: albums, y: cat.drzave || [], type:'bar', name:'Države', marker:{color:'#5B8A72'}},
+  {x: albums, y: cat.kraji || [], type:'bar', name:'Kraji', marker:{color:'#C98C5A'}},
+  {x: albums, y: cat.slovenija || [], type:'bar', name:'Slovenija', marker:{color:'#3F6FA6'}}
+], {
+  ...commonLayout,
+  barmode:'stack',
+  yaxis:{title:'Št. pojavnosti'}
+}, modeCfg);
+
+const contNames = STATS.continents || [];
+const contMatrix = STATS.continent_matrix || {};
+const contColors = ['#5E81AC','#A3BE8C','#EBCB8B','#D08770','#B48EAD','#88C0D0','#81A1C1','#8FBCBB'];
+const tracesCont = contNames.map((c, i) => ({
+  x: albums,
+  y: contMatrix[c] || albums.map(()=>0),
+  type:'bar',
+  name:c,
+  marker:{color: contColors[i % contColors.length]}
+}));
+Plotly.newPlot('chart-2', tracesCont, {
+  ...commonLayout,
+  barmode:'stack',
+  yaxis:{title:'Št. pojavnosti'}
+}, modeCfg);
+
+const words = STATS.top5_words || [];
+const topAlbumMatrix = STATS.top5_album_matrix || {};
+const albumColors = ['#5E81AC','#BF616A','#A3BE8C','#D08770','#B48EAD','#88C0D0','#EBCB8B','#81A1C1','#8FBCBB','#C0C6CF'];
+const tracesTop = albums.map((alb, i) => ({
+  x: words,
+  y: topAlbumMatrix[alb] || words.map(() => 0),
+  type:'bar',
+  name: alb,
+  marker: {color: albumColors[i % albumColors.length]}
+}));
+Plotly.newPlot('chart-3', tracesTop, {
+  ...commonLayout,
+  barmode:'stack',
+  xaxis:{tickangle:-18},
+  yaxis:{title:'Št. različnih pesmi'}
+}, modeCfg);
+</script>
+</body>
+</html>
